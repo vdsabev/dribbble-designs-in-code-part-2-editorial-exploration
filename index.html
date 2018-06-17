@@ -19,6 +19,29 @@
       --warningDark: #f3f208;
       --fontText: 'Merriweather', serif;
       --fontUI: Arial, sans-serif;
+
+      /* Basic layout */
+      --bodyPadding: 68px;
+      --navIconSize: 26px;
+      --titleFontSize: 10.8rem;
+      --authorFontSize: 1.8rem;
+    }
+
+    /* Grid layout */
+    @media (min-width: 1024px) {
+      :root {
+        --navIconSize: 60px;
+        --authorFontSize: 3rem;
+      }
+    }
+
+    /* Desktop layout */
+    @media (min-width: 1440px) {
+      :root {
+        --bodyPadding: 136px;
+        --titleFontSize: 16.5rem;
+        --authorFontSize: 4rem;
+      }
     }
 
     html,
@@ -34,35 +57,27 @@
     }
 
     body {
-      padding: 68px;
+      padding: var(--bodyPadding);
       font-size: 1.4rem;
     }
 
-    @media (min-width: 1560px) {
-      body {
-        padding: 136px;
-      }
+    img {
+      max-width: 100%;
     }
 
     svg {
       fill: currentColor;
     }
 
-    .nav-icon-back,
-    .nav-icon-down {
-      width: 26px;
+    .back-icon,
+    .down-icon {
+      width: var(--navIconSize);
     }
 
-    .nav-icon-down {
+    .down-icon {
       display: none;
-      /* TODO: Show on larger resolutions */
-    }
-
-    @media (min-width: 1024px) {
-      .nav-icon-back,
-      .nav-icon-down {
-        width: 60px;
-      }
+      position: sticky;
+      bottom: 0;
     }
 
     .page-name {
@@ -75,8 +90,8 @@
       letter-spacing: 0.0375em;
     }
 
-    .image-title,
-    .image-subtitle {
+    .primary-image,
+    .secondary-image {
       border-radius: 3px 3px 0 0;
     }
 
@@ -107,13 +122,7 @@
     .title {
       margin-top: 1em;
       margin-bottom: 0.33em;
-      font-size: 10.8rem;
-    }
-
-    @media (min-width: 1560px) {
-      .title {
-        font-size: 16.5rem;
-      }
+      font-size: var(--titleFontSize);
     }
 
     .author,
@@ -126,7 +135,7 @@
       align-items: center;
       margin-bottom: 5.2em;
       font-family: var(--fontUI);
-      font-size: 1.8rem;
+      font-size: var(--authorFontSize);
     }
 
     .author a {
@@ -137,44 +146,75 @@
       max-width: 2em;
     }
 
-    @media (min-width: 1560px) {
-      .author {
-        font-size: 3rem;
-      }
-    }
-
     .subtitle {
       margin-bottom: 1.3em;
       font-size: 2.4rem;
       line-height: 1.3;
     }
 
-    @media (min-width: 1560px) {
-      .author {
-        font-size: 4rem;
-      }
-    }
-
     .text {
       line-height: 1.3;
+    }
+
+    @media (min-width: 1024px) {
+      main {
+        display: grid;
+        grid-template-columns: auto 3fr auto 1fr;
+        grid-template-areas: "back-icon page-name primary-image primary-image  "
+                             "x         article   primary-image primary-image  "
+                             "x         article   image-overlap image-overlap  "
+                             "down-icon article   more-images   secondary-image";
+      }
+
+      .back-icon {
+        grid-area: back-icon;
+      }
+
+      .down-icon {
+        display: initial;
+        grid-area: down-icon;
+      }
+
+      .page-name {
+        grid-area: page-name;
+      }
+
+      /* Source: https://gridbyexample.com/examples/example22/ */
+      .primary-image {
+        grid-row: primary-image-start / image-overlap-end;
+        grid-column: primary-image;
+      }
+
+      .secondary-image {
+        grid-row: image-overlap-start / secondary-image-end;
+        grid-column: secondary-image;
+      }
+
+      .more-images {
+        grid-area: more-images;
+      }
+
+      article {
+        grid-area: article;
+      }
     }
   </style>
 </head>
 
 <body>
   <main>
-    <svg class="nav-icon-back" viewBox="0 0 24 24">
+    <svg class="back-icon" viewBox="0 0 24 24">
       <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
     </svg>
 
-    <svg class="nav-icon-down" viewBox="0 0 24 24">
+    <svg class="down-icon" viewBox="0 0 24 24">
       <path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" />
     </svg>
 
     <span class="page-name">Travel Times</span>
 
-    <img class="image-title" src="thailand.jpg" />
-    <img class="image-subtitle" src="jellyfish.jpg" />
+    <img class="primary-image" src="thailand.jpg" />
+    <img class="secondary-image" src="jellyfish.jpg" />
     <div class="more-images">
       <svg viewBox="0 0 24 24">
         <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z"
@@ -188,8 +228,7 @@
         <h1 class="title">Travel in time by sea</h1>
 
         <div class="author">
-          <img src="author.png" />
-          &nbsp;by&nbsp;
+          <img src="author.png" /> &nbsp;by&nbsp;
           <a href="#" rel="author">Jane Walkinson</a>
         </div>
 
