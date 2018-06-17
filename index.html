@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dribbble Designs in Code (part 2 - Editorial Exploration)</title>
+
+  <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merriweather:300" rel="stylesheet">
+  <style>
+    :root {
+      --foreground: #1d2c2f;
+      --foregroundLight: #384345;
+      --neutral: #adb2b3;
+      --neutralLight: #fcfcfc;
+      --warning: #f8f72c;
+      --warningDark: #f3f208;
+      --fontText: 'Merriweather', serif;
+      --fontUI: Arial, sans-serif;
+    }
+
+    html,
+    body {
+      background: var(--neutralLight) !important;
+    }
+
+    html {
+      /* 0.625 of 16px is 10px: https://engageinteractive.co.uk/blog/em-vs-rem-vs-px */
+      font-size: 62.5%;
+      font-family: var(--fontText);
+      color: var(--foreground);
+    }
+
+    body {
+      padding: 68px;
+      font-size: 1.4rem;
+    }
+
+    @media (min-width: 1560px) {
+      body {
+        padding: 136px;
+      }
+    }
+
+    svg {
+      fill: currentColor;
+    }
+
+    .nav-icon-back,
+    .nav-icon-down {
+      width: 26px;
+    }
+
+    .nav-icon-down {
+      display: none;
+      /* TODO: Show on larger resolutions */
+    }
+
+    @media (min-width: 1024px) {
+      .nav-icon-back,
+      .nav-icon-down {
+        width: 60px;
+      }
+    }
+
+    .page-name {
+      display: inline-block;
+      margin-bottom: 0.2em;
+      color: var(--foregroundLight);
+      font-family: var(--fontUI);
+      font-size: 3.2rem;
+      font-weight: bold;
+      letter-spacing: 0.0375em;
+    }
+
+    .image-title,
+    .image-subtitle {
+      border-radius: 3px 3px 0 0;
+    }
+
+    .more-images {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.8em 1.25em;
+      font-family: var(--fontUI);
+      font-size: 2.4rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+
+      transition: background var(--transitionDuration) var(--transitionEasing);
+      background: var(--warning);
+    }
+
+    .more-images:hover {
+      background: var(--warningDark);
+    }
+
+    .more-images svg {
+      width: 48px;
+      margin-right: 0.2em;
+    }
+
+    .title {
+      margin-top: 1em;
+      margin-bottom: 0.33em;
+      font-size: 10.8rem;
+    }
+
+    @media (min-width: 1560px) {
+      .title {
+        font-size: 16.5rem;
+      }
+    }
+
+    .author,
+    .author a {
+      color: var(--neutral);
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5.2em;
+      font-family: var(--fontUI);
+      font-size: 1.8rem;
+    }
+
+    .author a {
+      text-underline-position: under;
+    }
+
+    .author img {
+      max-width: 2em;
+    }
+
+    @media (min-width: 1560px) {
+      .author {
+        font-size: 3rem;
+      }
+    }
+
+    .subtitle {
+      margin-bottom: 1.3em;
+      font-size: 2.4rem;
+      line-height: 1.3;
+    }
+
+    @media (min-width: 1560px) {
+      .author {
+        font-size: 4rem;
+      }
+    }
+
+    .text {
+      line-height: 1.3;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <svg class="nav-icon-back" viewBox="0 0 24 24">
+      <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
+    </svg>
+
+    <svg class="nav-icon-down" viewBox="0 0 24 24">
+      <path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" />
+    </svg>
+
+    <span class="page-name">Travel Times</span>
+
+    <img class="image-title" src="thailand.jpg" />
+    <img class="image-subtitle" src="jellyfish.jpg" />
+    <div class="more-images">
+      <svg viewBox="0 0 24 24">
+        <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z"
+        />
+      </svg>
+      4 images
+    </div>
+
+    <article>
+      <header>
+        <h1 class="title">Travel in time by sea</h1>
+
+        <div class="author">
+          <img src="author.png" />
+          &nbsp;by&nbsp;
+          <a href="#" rel="author">Jane Walkinson</a>
+        </div>
+
+        <p class="subtitle">Both of the men had been trained for this moment, their lives had been a preparation for it.</p>
+      </header>
+
+      <section class="text">
+        Both of the men had been trained for this moment, their lives had been a preparation for it, they had been selected at birth
+        as those who would witness the answer, but even so they found themselves gasping and squirming like.
+      </section>
+    </article>
+  </main>
+</body>
+
+</html>
