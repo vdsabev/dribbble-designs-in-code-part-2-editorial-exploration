@@ -69,7 +69,6 @@
 
     body {
       padding: var(--spacing);
-      padding-left: 0; /* Compensated for by the icons' padding */
       font-size: 1.4rem;
     }
 
@@ -179,6 +178,10 @@
     }
 
     @media (min-width: 1024px) {
+      body {
+        padding-left: 0; /* Compensated for by the icons' padding */
+      }
+
       main {
         display: grid;
         grid-template-columns: auto 1fr 37.5%;
