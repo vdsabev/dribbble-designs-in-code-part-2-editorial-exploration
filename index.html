@@ -96,6 +96,8 @@
       position: sticky;
       top: 0;
       margin-left: -32.5px;
+      border-bottom-right-radius: calc(var(--spacing) / 2);
+      background: var(--neutralLight);
     }
 
     .down-icon {
@@ -234,17 +236,15 @@
         display: grid;
         grid-template-columns: 7fr 9fr;
         grid-template-areas: "primary primary  "
-                             "overlap overlap  "
                              "more    secondary";
       }
 
       .images__primary {
-        grid-row: primary / overlap;
-        grid-column: primary;
+        grid-area: primary;
       }
 
       .images__secondary {
-        grid-row: overlap / secondary;
+        grid-row: primary / secondary;
         grid-column: secondary;
         align-self: flex-end;
       }
