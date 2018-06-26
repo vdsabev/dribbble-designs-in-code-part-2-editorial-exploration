@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Dribbble Designs in Code (part 2 - Editorial Exploration)</title>
 
-  <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
+  <link href="https://necolas.github.io/normalize.css/8.0.0/normalize.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather:300" rel="stylesheet">
   <style>
     :root {
@@ -15,37 +15,14 @@
       --foregroundLight: #384345;
       --neutral: #adb2b3;
       --neutralLight: #fcfcfc;
-      --warning: #f8f72c;
-      --warningDark: #f3f208;
+      --primary: #f8f72c;
+      --primaryDark: #f3f208;
+
       --fontText: 'Merriweather', serif;
       --fontUI: Arial, sans-serif;
+
       --transitionDuration: 0.4s;
       --transitionEasing: cubic-bezier(0.25, 0.1, 0.25, 1);
-
-      --spacing: 3rem;
-      --titleFontSize: 5rem;
-      --subtitleFontSize: 2rem;
-    }
-
-    @media (min-width: 48em) {
-      :root {
-        --spacing: 3.6rem;
-        --titleFontSize: 7rem;
-        --subtitleFontSize: 2.2rem;
-      }
-    }
-
-    @media (min-width: 64em) {
-      :root {
-        --spacing: 6.8rem;
-        --titleFontSize: 10rem;
-        --subtitleFontSize: 2.4rem;
-      }
-    }
-
-    html,
-    body {
-      background: var(--neutralLight) !important;
     }
 
     html {
@@ -56,8 +33,9 @@
     }
 
     body {
-      padding: var(--spacing);
+      padding: 3rem;
       font-size: 1.4rem;
+      background: var(--neutralLight);
     }
 
     img {
@@ -69,32 +47,14 @@
       fill: currentColor;
     }
 
-    p + p {
-      margin-top: 1em;
-    }
-
     .back-icon,
     .down-icon {
-      position: sticky;
-      width: 3rem;
-      padding: 0.1em 4rem;
-    }
-
-    .back-icon {
       cursor: pointer;
-      top: 1rem;
-      margin-left: -3.25rem;
-      border-radius: calc(var(--spacing) / 2);
-      background: var(--neutralLight);
-    }
-
-    .down-icon {
-      display: none;
-      bottom: 1rem;
+      width: 3rem;
+      margin: 0.1em 0.2em;
     }
 
     .logo {
-      display: inline-block;
       margin: 0.3em 0;
       color: var(--foregroundLight);
       font-family: var(--fontUI);
@@ -108,29 +68,29 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1.3em 0.3em;
+      border: 0;
       font-family: var(--fontUI);
       font-size: 1.2rem;
-      letter-spacing: 0.03em;
       text-transform: uppercase;
 
       transition: background var(--transitionDuration) var(--transitionEasing);
-      background: var(--warning);
+      background: var(--primary);
     }
 
     .images__more:hover {
-      background: var(--warningDark);
+      background: var(--primaryDark);
     }
 
     .images__more svg {
       width: 2.4rem;
-      margin-right: 0.2em;
+      padding: 1.3em 0.3em;
     }
 
     .title {
       margin-top: 0.96em;
       margin-bottom: 0.1em;
-      font-size: var(--titleFontSize);
+      font-size: 5rem;
+      font-weight: normal;
       line-height: 1.15;
       letter-spacing: 0.002em;
     }
@@ -158,8 +118,8 @@
     }
 
     .subtitle {
-      margin-bottom: 0.55em;
-      font-size: var(--subtitleFontSize);
+      margin-bottom: 0.1em;
+      font-size: 2rem;
       line-height: 1.3;
     }
 
@@ -170,83 +130,20 @@
       letter-spacing: 0.015em;
     }
 
-    @media (min-width: 64em) {
-      body {
-        padding-left: 0; /* Compensated for by the icons' padding */
-      }
+    /* Sticky design */
+    .back-icon,
+    .down-icon {
+      position: sticky;
+      border-radius: 50%;
+      background: var(--neutralLight);
+    }
 
-      main {
-        display: grid;
-        grid-template-columns: auto 1fr 36.33%;
-        grid-template-areas: "back-icon logo   images"
-                             ".         header images"
-                             "down-icon text   images";
+    .back-icon {
+      top: 1rem;
+    }
 
-        max-width: 150vh;
-        margin: 0 auto;
-      }
-
-
-      .back-icon {
-        grid-area: back-icon;
-        align-self: center;
-        margin-left: 0;
-      }
-
-      .down-icon {
-        display: initial;
-        grid-area: down-icon;
-        align-self: flex-end;
-      }
-
-      .logo {
-        grid-area: logo;
-        align-self: center;
-      }
-
-      header,
-      .text {
-        padding-right: var(--spacing);
-      }
-
-      header {
-        grid-area: header;
-      }
-
-      .text {
-        grid-area: text;
-      }
-
-      .images {
-        grid-area: images;
-      }
-
-      .images__container {
-        position: sticky;
-        top: var(--spacing);
-        display: grid;
-        grid-template-columns: 7fr 9fr;
-        grid-template-areas: "primary primary  "
-                             "more    secondary";
-      }
-
-      .images__primary {
-        grid-area: primary;
-      }
-
-      .images__secondary {
-        grid-row: primary / secondary;
-        grid-column: secondary;
-        align-self: flex-end;
-      }
-
-      .images__more {
-        grid-area: more;
-
-        cursor: pointer;
-        font-weight: bold;
-        white-space: nowrap;
-      }
+    .down-icon {
+      bottom: 1rem;
     }
   </style>
 </head>
@@ -257,63 +154,46 @@
       <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
     </svg>
 
-    <svg class="down-icon" viewBox="0 0 24 24">
-      <path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" />
-    </svg>
-
     <span class="logo">Travel Times</span>
 
     <header>
-      <h1 class="title">Travel in time by sea</h1>
+      <h1 class="title">
+        Travel in time by sea
+      </h1>
 
       <div class="author">
-        <img src="author.png" /> &nbsp;by&nbsp;
+        <img src="https://raw.githubusercontent.com/vdsabev/editorial-exploration/master/author.png" />&nbsp;by&nbsp;
         <a href="#" rel="author">Jane Walkinson</a>
       </div>
 
-      <p class="subtitle">Both of the men had been trained for this moment, their lives had been a preparation for it.</p>
+      <p class="subtitle">
+        Both of the men had been trained for this moment, their lives had been a preparation for it.
+      </p>
     </header>
 
     <div class="images">
-      <div class="images__container">
-        <img class="images__primary" src="thailand.jpg" />
+      <img class="images__primary" src="https://raw.githubusercontent.com/vdsabev/editorial-exploration/master/thailand.jpg" />
 
-        <img class="images__secondary" src="jellyfish.jpg" />
+      <img class="images__secondary" src="https://raw.githubusercontent.com/vdsabev/editorial-exploration/master/jellyfish.jpg" />
 
-        <div class="images__more">
-          <svg viewBox="0 0 24 24">
-            <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z"
-            />
-          </svg>
-          4 images
-        </div>
+      <button type="button" class="images__more">
+        <svg viewBox="0 0 24 24">
+          <path d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z"
+          />
+        </svg>
+        4 images
       </div>
     </div>
 
     <section class="text">
-        <p>Both of the men had been trained for this moment, their lives had been a preparation for it, they had been selected at birth as those who would witness the answer, but even so they found themselves gasping and squirming like excited children.</p>
-        <p>"And you're ready to give it to us?" urged Loonsuawl.</p>
-        <p>"I am."</p>
-        <p>"Now?"</p>
-        <p>"Now," said Deep Thought.</p>
-        <p>They both licked their dry lips.</p>
-        <p>"Though I don't think," added Deep Thought. "that you're going to like it."</p>
-        <p>"Doesn't matter!" said Phouchg. "We must know it! Now!"</p>
-        <p>"Now?" inquired Deep Thought.</p>
-        <p>"Yes! Now..."</p>
-        <p>"All right," said the computer, and settled into silence again. The two men fidgeted. The tension was unbearable.</p>
-        <p>"You're really not going to like it," observed Deep Thought.</p>
-        <p>"Tell us!"</p>
-        <p>"All right," said Deep Thought. "The Answer to the Great Question..."</p>
-        <p>"Yes..!"</p>
-        <p>"Of Life, the Universe and Everything..." said Deep Thought.</p>
-        <p>"Yes...!"</p>
-        <p>"Is..." said Deep Thought, and paused.</p>
-        <p>"Yes...!"</p>
-        <p>"Is..."</p>
-        <p>"Yes...!!!...?"</p>
-        <p>"42", said Deep Thought, with infinite majesty and calm.</p>
+      <p>
+        Both of the men had been trained for this moment, their lives had been a preparation for it, they had been selected at birth as those who would witness the answer, but even so they found themselves gasping and squirming like excited children.
+      </p>
     </section>
+
+    <svg class="down-icon" viewBox="0 0 24 24">
+      <path d="M11,4H13V16L18.5,10.5L19.92,11.92L12,19.84L4.08,11.92L5.5,10.5L11,16V4Z" />
+    </svg>
   </main>
 </body>
 
