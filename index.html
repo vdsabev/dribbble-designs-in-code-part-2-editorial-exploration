@@ -40,7 +40,6 @@
 
     img {
       max-width: 100%;
-      max-height: 100%;
     }
 
     svg {
@@ -144,6 +143,45 @@
 
     .down-icon {
       bottom: 1rem;
+    }
+
+    @media (min-width: 64em) {
+      main {
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        grid-template-columns: auto 5rem 1fr 12rem 37.5%;
+        grid-template-areas:
+          "back-icon . logo   . images"
+          ".         . header . images"
+          "down-icon . text   . images";
+      }
+
+      .back-icon {
+        grid-area: back-icon;
+        align-self: center;
+      }
+
+      .logo {
+        grid-area: logo;
+        align-self: center;
+      }
+
+      .down-icon {
+        grid-area: down-icon;
+        align-self: flex-end;
+      }
+
+      header {
+        grid-area: header;
+      }
+
+      .text {
+        grid-area: text;
+      }
+
+      .images {
+        grid-area: images;
+      }
     }
   </style>
 </head>
