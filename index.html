@@ -201,6 +201,26 @@
 
       .images {
         grid-area: images;
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        grid-template-columns: 7fr 9fr;
+        grid-template-areas:
+          "primary primary  "
+          "more    secondary";
+      }
+
+      .images__primary {
+        grid-area: primary;
+      }
+
+      .images__secondary {
+        grid-row: primary / secondary;
+        grid-column: secondary;
+        align-self: flex-end;
+      }
+
+      .images__more {
+        grid-area: more;
       }
     }
   </style>
