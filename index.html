@@ -87,6 +87,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 100%;
       border: 0;
       font-family: var(--fontUI);
       font-size: 1.2rem;
@@ -166,6 +167,10 @@
     }
 
     @media (min-width: 64em) {
+      body {
+        padding-left: calc(var(--spacing) / 2);
+      }
+
       main {
         display: grid;
         grid-template-rows: auto auto 1fr;
@@ -174,6 +179,9 @@
           "back-icon . logo   . images"
           ".         . header . images"
           "down-icon . text   . images";
+
+        max-width: 150vh;
+        margin: 0 auto;
       }
 
       .back-icon {
